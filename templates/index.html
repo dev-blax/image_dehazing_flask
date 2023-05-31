@@ -23,11 +23,12 @@
             <div class=" max-w-sm overflow-hidden rounded ">
                 <img src="" alt="" class="" id="preview">
             </div>
+            <div class="scanning-animation" id="scanning-animation"></div>
             <input type="submit" value="Dehaze" class=" bg-gray-400 text-gray-800 px-7 py-1 rounded mt-6 cursor-pointer hover:bg-gray-200 ">
         </form>
     </div>
     {% if original_image and processed_image %}
-    <div class=" flex justify-around space-x-5 ">
+    <div class=" flex justify-around space-x-5 my-6 " id="results">
         <div class=" w-72 overflow-hidden rounded shadow-md ">
             <h2r class=" text-gray-800 font-semibold ">Original Image</h2>
             <img class=" w-full" src="{{ url_for('static', filename='original_image.png') }}" alt="Original Image">
@@ -38,5 +39,14 @@
         </div>
     </div>
     {% endif %}
+    <script>
+        function startScanningAnimation() {
+            document.getElementById("scanning-animation").style.display = "block";
+        }
+        
+        function stopScanningAnimation() {
+            document.getElementById("scanning-animation").style.display = "none";
+        }
+    </script>
 </body>
 </html>

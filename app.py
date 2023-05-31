@@ -1,14 +1,16 @@
 from flask import Flask, render_template, request
 from PIL import Image
 import cv2
-import image_dehazer
+# import image_dehazer
+
+from dehaze import remove_haze
 import numpy as np
 import os
 
 app = Flask(__name__)
 
 def dehaze_image(image):
-    image, HazeMap = image_dehazer.remove_haze(image)
+    image, HazeMap = remove_haze(image)
     return image
 
 @app.route('/', methods=['GET', 'POST'])
