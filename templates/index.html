@@ -12,10 +12,10 @@
           };
           reader.readAsDataURL(event.target.files[0]);
         }
-      </script>
+    </script>
 </head>
-<body class=" min-h-screen bg-gray-300 flex justify-center items-center ">
-    <div class=" py-7 px-8 bg-purple-900 text-white shadow-2xl rounded-md ">
+<body class=" min-h-screen bg-gray-300 flex flex-col justify-around items-center ">
+    <div class=" py-7 px-8 bg-purple-900 text-white shadow-2xl rounded-md my-6 ">
         <h1 class=" font-semibold text-2xl ">Image Dehazing</h1>
         <hr class=" my-5">
         <form action="/" method="post" enctype="multipart/form-data" class=" flex flex-col items-start">
@@ -27,14 +27,14 @@
         </form>
     </div>
     {% if original_image and processed_image %}
-    <div class="image-container">
-        <div>
-            <h2>Original Image</h2>
-            <img src="{{ url_for('static', filename=original_image) }}" alt="Original Image">
+    <div class=" flex justify-around space-x-5 ">
+        <div class=" w-72 overflow-hidden rounded shadow-md ">
+            <h2r class=" text-gray-800 font-semibold ">Original Image</h2>
+            <img class=" w-full" src="{{ url_for('static', filename='original_image.png') }}" alt="Original Image">
         </div>
-        <div>
-            <h2>Processed Image</h2>
-            <img src="{{ url_for('static', filename=processed_image) }}" alt="Processed Image">
+        <div class=" w-72 overflow-hidden rounded ">
+            <h2 class=" text-gray-800 font-semibold  ">Processed Image</h2>
+            <img class=" w-full" src="{{ url_for('static', filename='processed_image.png') }}" alt="Processed Image">
         </div>
     </div>
     {% endif %}
