@@ -3,15 +3,40 @@
 <head>
     <title>Image Dehazing</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        function previewImage(event) {
+          var reader = new FileReader();
+          reader.onload = function() {
+            var output = document.getElementById('preview');
+            output.src = reader.result;
+          };
+          reader.readAsDataURL(event.target.files[0]);
+        }
+      </script>
 </head>
 <body class=" min-h-screen bg-gray-300 flex justify-center items-center ">
     <div class=" py-7 px-8 bg-purple-900 text-white shadow-2xl rounded-md ">
         <h1 class=" font-semibold text-2xl ">Image Dehazing</h1>
         <hr class=" my-5">
         <form action="/" method="post" enctype="multipart/form-data" class=" flex flex-col items-start">
-            <input type="file" name="image" accept="image/*" required>
+            <input type="file" name="image" accept="image/*" onchange="previewImage(event)">
+            <div class=" max-w-sm overflow-hidden rounded ">
+                <img src="" alt="" class="" id="preview">
+            </div>
             <input type="submit" value="Dehaze" class=" bg-gray-400 text-gray-800 px-7 py-1 rounded mt-6 cursor-pointer hover:bg-gray-200 ">
         </form>
     </div>
+    {% if original_image and processed_image %}
+    <div class="image-container">
+        <div>
+            <h2>Original Image</h2>
+            <img src="{{ url_for('static', filename=original_image) }}" alt="Original Image">
+        </div>
+        <div>
+            <h2>Processed Image</h2>
+            <img src="{{ url_for('static', filename=processed_image) }}" alt="Processed Image">
+        </div>
+    </div>
+    {% endif %}
 </body>
 </html>

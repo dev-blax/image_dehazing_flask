@@ -25,14 +25,15 @@ def upload_file():
         # Convert the processed image back to PIL format
         processed_image_pil = Image.fromarray(processed_image)
         
-        # Save the processed image to the static folder
-        temp_filename = 'processed_image.png'
+        # Save the images to the static folder
         static_folder = os.path.join(app.root_path, 'static')
-        temp_filepath = os.path.join(static_folder, temp_filename)
-        processed_image_pil.save(temp_filepath)
+        original_image_filepath = os.path.join(static_folder, 'original_image.png')
+        processed_image_filepath = os.path.join(static_folder, 'processed_image.png')
+        original_image_pil.save(original_image_filepath)
+        processed_image_pil.save(processed_image_filepath)
         
-        # Pass the filename to the template for display
-        return render_template('result.html', filename=temp_filename)
+        # Pass the filenames to the template for display
+        return render_template('index.html', original_image=original_image_filepath, processed_image=processed_image_filepath)
     
     return render_template('index.html')
 
