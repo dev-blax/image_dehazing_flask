@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Image Dehazing</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         function previewImage(event) {
@@ -15,23 +16,25 @@
     </script>
 </head>
 <body class=" min-h-screen bg-gray-300 flex flex-col justify-around items-center ">
-    <div class=" py-7 px-8 bg-purple-900 text-white shadow-2xl rounded-md my-6 ">
+    <div class=" py-7 px-8 bg-purple-900 text-white shadow-2xl rounded-md my-3 ">
         <h1 class=" font-semibold text-2xl ">Image Dehazing</h1>
         <hr class=" my-5">
         <form action="/" method="post" enctype="multipart/form-data" class=" flex flex-col items-start">
             <input type="file" name="image" accept="image/*" onchange="previewImage(event)">
-            <div class=" max-w-sm overflow-hidden rounded ">
+            <!-- <div class=" max-w-sm overflow-hidden rounded ">
                 <img src="" alt="" class="" id="preview">
-            </div>
+            </div> -->
             <div class="scanning-animation" id="scanning-animation"></div>
             <input type="submit" value="Dehaze" class=" bg-gray-400 text-gray-800 px-7 py-1 rounded mt-6 cursor-pointer hover:bg-gray-200 ">
         </form>
     </div>
     {% if original_image and processed_image %}
     <div class=" flex justify-around space-x-5 my-6 " id="results">
-        <div class=" w-72 overflow-hidden rounded shadow-md ">
+        <div class=" w-72 overflow-hidden rounded ">
             <h2r class=" text-gray-800 font-semibold ">Original Image</h2>
-            <img class=" w-full" src="{{ url_for('static', filename='original_image.png') }}" alt="Original Image">
+            <div class=" w-72">
+                <img class=" w-full" src="{{ url_for('static', filename='original_image.png') }}" alt="Original Image">
+            </div>
         </div>
         <div class=" w-72 overflow-hidden rounded ">
             <h2 class=" text-gray-800 font-semibold  ">Processed Image</h2>
